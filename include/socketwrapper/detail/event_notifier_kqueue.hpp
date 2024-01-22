@@ -153,8 +153,9 @@ public:
                 else if (ready_set[i].filter == static_cast<int16_t>(event_type::READ) ||
                     ready_set[i].filter == static_cast<int16_t>(event_type::WRITE))
                 {
-                    unwatch(ready_set[i].ident, static_cast<event_type>(ready_set[i].filter));
-                    return std::make_pair(ready_set[i].ident, static_cast<event_type>(ready_set[i].filter));
+                    int fd = ready_set[i].ident;
+                    unwatch(fd, static_cast<event_type>(ready_set[i].filter));
+                    return std::make_pair(fd, static_cast<event_type>(ready_set[i].filter));
                 }
             }
         }
